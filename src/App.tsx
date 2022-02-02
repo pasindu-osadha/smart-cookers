@@ -11,7 +11,7 @@ import { Login } from './pages/login/Login';
 
 function App() {
   return (
-    <div className="App">
+    <div className='bg-red-200'>
       <BrowserRouter>
         <Navbar />
         <Routes>
