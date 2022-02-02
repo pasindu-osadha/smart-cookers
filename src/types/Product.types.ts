@@ -7,9 +7,11 @@ export type ProductCard={
 } 
 export type ProductProps = {
     productData: {
-        id:number;
-        name: string;
-        description: string;
-        url: string;
+        id:number,
+        name: string,
+        description: string,
+        url: string,
+        price:number,
+        qty:number
     };
   };
