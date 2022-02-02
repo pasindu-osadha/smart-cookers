@@ -10,7 +10,7 @@ export const ProductList = () => {
     getAllProducts().then((res)=> setProductData(res.data));
   },[]);
   return (
-      <div className='grid grid-cols-4 gap-4 justify-around'>
+      <div className='grid grid-cols-4 gap-36 m-10 '>
           {productData.map(function(data,index){
               return <ProductCard key={index}
               productData = {data}/>
