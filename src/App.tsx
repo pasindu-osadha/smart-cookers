@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { Navbar } from './components/navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/footer/Footer';
