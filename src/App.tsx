@@ -8,6 +8,8 @@ import { ProductPage } from './pages/product/ProductPage';
 import { Store } from './pages/store/Store';
 import { About } from './pages/about/About';
 import { Login } from './pages/login/Login';
+import { AddProduct } from './containers/product/AddProduct';
+import { ProductTable } from './containers/product/ProductTable';
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path='/store' element={<Store />} />
           <Route path='/aboutUs' element={<About />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/add-product' element={<AddProduct />} />
+          <Route path='/view-all-product' element={<ProductTable />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
