@@ -4,7 +4,7 @@ import { ProductProps } from '../../types/Product.types';
 export const ProductTableRow = (props: ProductProps) => {
     return (
 
-        <tr className="border-b hover:bg-orange-100 bg-gray-100">
+        <tr className="border-b hover:bg-[#badfe7] bg-gray-100">
             <td className="p-3 px-5">{props.productData.name}</td>
             <td className="p-3 px-5">{props.productData.description}</td>
             <td className="p-3 px-5">{props.productData.price}</td>

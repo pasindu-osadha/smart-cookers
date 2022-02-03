@@ -13,7 +13,7 @@ import { ProductTable } from './containers/product/ProductTable';
 
 function App() {
   return (
-    <div className='bg-red-200'>
+    <div className='bg-backgroundColor'>
       <BrowserRouter>
         <Navbar />
         <Routes>
