@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { addProduct } from '../../services/ProductService';
 
 export const AddProduct = () => {
+
+  const navigate = useNavigate();
+  //state management 
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState(0);
+  const [qty, setQty] = useState(0);
+
+  const handleSubmit =  async (e: any, status: any) => {
+    e.preventDefault();
+    var data = {
+      name: name,
+      description: description,
+      price: price,
+      qty: qty
+    };
+
+  await addProduct(data);
+   navigate('/view-all-product');
+  };
+
+  
+
   return (
     <>
 
@@ -26,6 +51,9 @@ export const AddProduct = () => {
                         id="product-name"
                         autoComplete="given-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => {
+                          setName(e.target.value);
+                        }}
                       />
                     </div>
 
@@ -40,6 +68,9 @@ export const AddProduct = () => {
                         name="product-description"
                         id="product-description"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => {
+                          setDescription(e.target.value);
+                        }}
                       />
                     </div>
 
@@ -54,6 +85,9 @@ export const AddProduct = () => {
                         name="product-price"
                         id="product-price"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => {
+                          setPrice(e.target.valueAsNumber);
+                        }}
                       />
                     </div>
 
@@ -66,6 +100,9 @@ export const AddProduct = () => {
                         name="product-qty"
                         id="product-qty"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => {
+                          setQty(e.target.valueAsNumber);
+                        }}
                       />
                     </div>
 
@@ -111,6 +148,10 @@ export const AddProduct = () => {
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={(e) => {
+                      handleSubmit(e, 'post');
+                    }}
+
                   >
                     Save
                   </button>
