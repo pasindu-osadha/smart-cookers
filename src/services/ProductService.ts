@@ -10,6 +10,9 @@ export const getAllProducts = () => {
     return axios.get(api + 'product');
 };
 
+export const getOneProduct = (id?: string) => {
+    return axios.get(api + 'product/' + id);
+}
 
 
 export const addProduct = async (data: any) => {
@@ -24,7 +27,7 @@ export const addProduct = async (data: any) => {
         .then(function (response) {
             //handle success
             console.log(response);
-        
+
             return response;
 
 
