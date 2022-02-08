@@ -10,8 +10,9 @@ export const getAllProducts = () => {
     return axios.get(api + 'product');
 };
 
-export const getOneProduct = (id?: string) => {
-    return axios.get(api + 'product/' + id);
+export const getOneProduct =async (id?: string) => {
+    console.log('service layer ');
+    return await axios.get(api + 'product/' + id);
 }
 
 
@@ -37,3 +38,7 @@ export const addProduct = async (data: any) => {
             console.log(response);
         });
 };
+
+export const deleteProduct=async (id:number) => {
+    await axios.delete(api+'product/'+id);
+}
