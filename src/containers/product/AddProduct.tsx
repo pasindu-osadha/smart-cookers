@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { storage } from '../../firebase';
 import { addProduct } from '../../services/ProductService';
 
+var fileType = new File([''], '', {
+  type: 'image'
+});
+
+
 export const AddProduct = () => {
+
 
   const navigate = useNavigate();
   //state management 
@@ -10,27 +17,64 @@ export const AddProduct = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [qty, setQty] = useState(0);
+  const [image, setImage] = useState<File>(fileType);
+  const [progress, setProgress] = useState(0);
+  const [url, setUrl] = useState('');
 
-  const handleSubmit =  async (e: any, status: any) => {
+  const handleSubmit = (e: any, status: any) => {
     e.preventDefault();
     var data = {
-      name: name,
-      description: description,
-      price: price,
-      qty: qty
+      'name': name,
+      'description': description,
+      'price': price,
+      'qty': qty,
+      'url': ""
     };
 
-  await addProduct(data);
-   navigate('/view-all-product');
+
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            data.url = url;
+            console.log(data);
+            addProduct(data);
+            navigate('/product-page');
+          });
+      }
+    );
   };
 
-  
+
+  const handleImageUpload = () => {
+
+
+  };
+
+  const handleImageFieldChange = async (e: any) => {
+
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
 
   return (
     <>
 
-      <div className="w-full flex justify-center ">
-        <div className="md:grid md:grid-cols-3 md:gap-6  ">
+      <div className="w-screen  h-screen  pl-96 ">
+        <div className="md:grid md:grid-cols-3 md:gap-6  m-auto pt-14 ">
 
           <div className="mt-5 md:mt-0 md:col-span-2">
             <form action="#" method="POST">
@@ -132,7 +176,7 @@ export const AddProduct = () => {
                               className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                             >
                               <span  >Upload a file</span>
-                              <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                              <input id="file-upload" onChange={handleImageFieldChange} name="file-upload" type="file" className="sr-only" />
                             </label>
 
                           </div>

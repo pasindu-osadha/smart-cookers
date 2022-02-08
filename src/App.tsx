@@ -10,12 +10,14 @@ import { About } from './pages/about/About';
 import { Login } from './pages/login/Login';
 import { AddProduct } from './containers/product/AddProduct';
 import { ProductTable } from './containers/product/ProductTable';
+import { ProductInfoCard } from './components/product/ProductInfoCard';
 
 function App() {
   return (
     <div className='bg-backgroundColor'>
       <BrowserRouter>
         <Navbar />
+      
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/product-page' element={<ProductPage />} />
@@ -24,8 +26,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/add-product' element={<AddProduct />} />
           <Route path='/view-all-product' element={<ProductTable />} />
+          <Route path='/ProductInfoCard/:id' element={<ProductInfoCard/>}/>
 
         </Routes>
+        
         <Footer />
       </BrowserRouter>
 

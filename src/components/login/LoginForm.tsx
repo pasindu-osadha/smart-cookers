@@ -3,7 +3,7 @@ import React from 'react';
 export const LoginForm = () => {
     return (
         <div className='w-full justify-center flex m-4'>
-        <div className="container max-w-xl">
+        <div className="container max-w-xl pt-10">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" >
