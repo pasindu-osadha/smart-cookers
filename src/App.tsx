@@ -11,27 +11,31 @@ import { Login } from './pages/login/Login';
 import { AddProduct } from './containers/product/AddProduct';
 import { ProductTable } from './containers/product/ProductTable';
 import { ProductInfoCard } from './components/product/ProductInfoCard';
+import AuthContextProvider from './contexts/AuthContext';
+import { ProfilePage } from './pages/profile/ProfilePage';
 
 function App() {
   return (
     <div className='bg-backgroundColor'>
-      <BrowserRouter>
-        <Navbar />
-      
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/product-page' element={<ProductPage />} />
-          <Route path='/store' element={<Store />} />
-          <Route path='/aboutUs' element={<About />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/add-product' element={<AddProduct />} />
-          <Route path='/view-all-product' element={<ProductTable />} />
-          <Route path='/ProductInfoCard/:id' element={<ProductInfoCard/>}/>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Navbar />
 
-        </Routes>
-        
-        <Footer />
-      </BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/product-page' element={<ProductPage />} />
+            <Route path='/store' element={<Store />} />
+            <Route path='/aboutUs' element={<About />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/add-product' element={<AddProduct />} />
+            <Route path='/view-all-product' element={<ProductTable />} />
+            <Route path='/ProductInfoCard/:id' element={<ProductInfoCard />} />
+            <Route path='/profile-page' element={<ProfilePage/>}/>
+          </Routes>
+
+          <Footer />
+        </BrowserRouter>
+      </AuthContextProvider>
 
     </div>
   );

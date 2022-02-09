@@ -4,12 +4,12 @@ import jwt_decode from 'jwt-decode';
 
 
 type userToken = {
-  ID: number,
+  ID: string,
   Role : string
 }
 
 
-const userInitialState : userToken = { ID: 0 , Role:''};
+const userInitialState : userToken = { ID:'' , Role:''};
 
 export const AuthContext= createContext<{
   user: userToken;
@@ -39,13 +39,15 @@ const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
       case 'LoadUser':
         const cookie = localStorage.getItem('userToken');
 
-      //  console.log(cookie);
+        console.log(cookie);
         let token = jwt_decode<userToken>(cookie || '') || null;
+        console.log(token)
+        
         console.log(token.ID)
         console.log(token.Role)
         return {
-          id: token.ID,
-          role: token.Role,
+          ID: token.ID,
+          Role: token.Role,
         }
       case 'DeleteUser':
         return action.user
@@ -60,8 +62,8 @@ const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
     if (token) {
       let user = jwt_decode<userToken>(token || '') || null;
       return { 
-          id: user.ID,
-          role: user.Role,  
+          ID: user.ID,
+          Role: user.Role,  
       }
     } else
       return '';
