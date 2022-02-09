@@ -8,7 +8,7 @@ export const ProductList = () => {
 
   const [productData, setProductData] = useState<ProductinfoProps[]>([]);
 
-  const [outlet, setOutlet] = useState('COLOMBO');
+  const [outlet, setOutlet] = useState('Select an outlet');
 
   const handleOutlet = () => {
     console.log('handle outlet');
@@ -38,7 +38,8 @@ export const ProductList = () => {
                   console.log('e.target.value');
                   handleOutlet()
                 }
-              }} defaultValue='COLOMBO' className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-sky-700 text-base pl-3 pr-10">
+              }} defaultValue='Select' className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-sky-700 text-base pl-3 pr-10">
+                <option value={'Select an outlet'} > Select an outlet</option>
                 <option value={'COLOMBO'}>COLOMBO</option>
                 <option value={'KALUTARA'}> KALUTARA</option>
                 <option value={'GALLE'}>GALLE</option>
@@ -58,9 +59,9 @@ export const ProductList = () => {
 
       <div className='grid grid-cols-4 gap-36 m-10 '>
         {productData.map(function (data, index) {
-       
+
           if (data.outlet == outlet) {
-            
+
             return <ProductCard key={index} productData={data} />
           }
         })}

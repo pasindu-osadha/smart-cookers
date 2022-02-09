@@ -1,8 +1,11 @@
 import React from 'react';
 
 export const ProfilePage = () => {
-  return (<div>
-    <div className="hidden sm:block" aria-hidden="true">
+  return (
+
+    <div className='min-h-screen mx-20'>
+      <h1 className='text-5xl text-center pt-10 '>Edit Profile Infomation</h1>
+      <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
           <div className="border-t border-gray-200" />
         </div>
@@ -10,13 +13,8 @@ export const ProfilePage = () => {
 
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-              <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
-            </div>
-          </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+
+          <div className="mt-5 md:mt-0 md:col-span-3">
             <form action="#" method="POST">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
@@ -142,6 +140,6 @@ export const ProfilePage = () => {
           </div>
         </div>
       </div>
-    
-     </div>);
+
+    </div>);
 };

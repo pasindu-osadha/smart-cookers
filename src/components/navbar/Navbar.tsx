@@ -30,19 +30,38 @@ export const Navbar = () => {
         }
     };
 
-    const renderStaff = () => {
+    const renderInventory = () => {
+        if (user) {
+            if (user.Role == 'INVENTORY') {
 
-        if (user.Role == 'STAFF') {
-
-            return (
-                <li className='hover:cursor-pointer'>
-                    <a onClick={() => navigate('/product-page')} className="md:p-4 py-2 block hover:text-white">
-                        Product
-                    </a>
-                </li>
-            );
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/product-page')} className="md:p-4 py-2 block hover:text-white">
+                            Product
+                        </a>
+                    </li>
+                );
+            }
         }
+        else {
+            return <span></span>;
+        }
+    };
 
+
+    const renderSales = () => {
+        if (user) {
+            if (user.Role == 'SALES') {
+
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/sales-page')} className="md:p-4 py-2 block hover:text-white">
+                            Sales
+                        </a>
+                    </li>
+                );
+            }
+        }
         else {
             return <span></span>;
         }
@@ -77,7 +96,8 @@ export const Navbar = () => {
                             </a>
                         </li> */}
 
-                        {renderStaff()}
+                        {renderInventory()}
+                        {renderSales()}
                         {renderProfile()}
 
                         {/* <li className='hover:cursor-pointer'>

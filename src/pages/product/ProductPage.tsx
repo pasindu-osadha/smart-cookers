@@ -5,7 +5,7 @@ import { AddProduct } from '../../containers/product/AddProduct';
 
 export const ProductPage = () => {
     return (
-        <div className='h-screen bg-white flex justify-center'>
+        <div className='min-h-screen bg-white flex justify-center'>
 
             <div className='m-3'>
                 <Link to="/add-product" >

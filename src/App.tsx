@@ -13,6 +13,7 @@ import { ProductTable } from './containers/product/ProductTable';
 import { ProductInfoCard } from './components/product/ProductInfoCard';
 import AuthContextProvider from './contexts/AuthContext';
 import { ProfilePage } from './pages/profile/ProfilePage';
+import { Sales } from './pages/Sales/Sales';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
     <div className='bg-backgroundColor'>
       <AuthContextProvider>
         <BrowserRouter>
-       
+
           <Navbar />
 
           <Routes>
@@ -32,7 +33,8 @@ function App() {
             <Route path='/add-product' element={<AddProduct />} />
             <Route path='/view-all-product' element={<ProductTable />} />
             <Route path='/ProductInfoCard/:id' element={<ProductInfoCard />} />
-            <Route path='/profile-page' element={<ProfilePage/>}/>
+            <Route path='/profile-page' element={<ProfilePage />} />
+            <Route path='/sales-page' element={<Sales />} />
           </Routes>
 
           <Footer />
