@@ -80,11 +80,11 @@ export const Navbar = () => {
                         {renderStaff()}
                         {renderProfile()}
 
-                        <li className='hover:cursor-pointer'>
+                        {/* <li className='hover:cursor-pointer'>
                             <a onClick={() => navigate('/aboutUs')} className="md:p-4 py-2 block hover:text-white">
                                 About Us
                             </a>
-                        </li>
+                        </li> */}
                         <li className='hover:cursor-pointer '>
                             {!user && (
                                 <a onClick={() => navigate('/login')} className="md:p-4 py-2 block hover:text-white text-lime-100 bold">

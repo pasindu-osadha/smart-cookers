@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneProduct } from '../../services/ProductService';
+import { ProductProps } from '../../types/Product.types';
 
-type ProductinfoProps = {
+export type ProductinfoProps = {
 
-    id: string,
+    id: number,
     name: string,
     description: string,
     url: string,
     price: number,
-    qty: number
+    qty: number,
+    outlet:string
 }
 
 export const ProductInfoCard = () => {

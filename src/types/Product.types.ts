@@ -12,6 +12,7 @@ export type ProductProps = {
         description: string,
         url: string,
         price:number,
-        qty:number
+        qty:number,
+        outlet:string
     };
   };

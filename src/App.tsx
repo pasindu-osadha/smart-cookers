@@ -14,11 +14,13 @@ import { ProductInfoCard } from './components/product/ProductInfoCard';
 import AuthContextProvider from './contexts/AuthContext';
 import { ProfilePage } from './pages/profile/ProfilePage';
 
+
 function App() {
   return (
     <div className='bg-backgroundColor'>
       <AuthContextProvider>
         <BrowserRouter>
+       
           <Navbar />
 
           <Routes>
