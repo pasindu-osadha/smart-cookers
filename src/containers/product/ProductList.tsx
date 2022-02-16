@@ -60,7 +60,7 @@ export const ProductList = () => {
       <div className='grid grid-cols-4 gap-36 m-10 '>
         {productData.map(function (data, index) {
 
-          if (data.outlet == outlet) {
+          if (data.outlet === outlet) {
 
             return <ProductCard key={index} productData={data} />
           }

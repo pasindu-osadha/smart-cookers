@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserRole } from '../../constants/global';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export const Navbar = () => {
@@ -12,7 +13,9 @@ export const Navbar = () => {
         // dispatch({ type: 'DeleteUser' });
 
         window.alert('Sucessfully logout ');
+        navigate('/');
         window.location.reload();
+
     };
 
     console.log(user.ID);
@@ -32,7 +35,7 @@ export const Navbar = () => {
 
     const renderInventory = () => {
         if (user) {
-            if (user.Role == 'INVENTORY') {
+            if (user.Role == UserRole.InventoryStaff) {
 
                 return (
                     <li className='hover:cursor-pointer'>
@@ -51,7 +54,7 @@ export const Navbar = () => {
 
     const renderSales = () => {
         if (user) {
-            if (user.Role == 'SALES') {
+            if (user.Role == UserRole.SalesStaff) {
 
                 return (
                     <li className='hover:cursor-pointer'>
