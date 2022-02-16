@@ -3,7 +3,7 @@ import { LoginForm } from '../../containers/login/LoginForm';
 
 export const Login = () => {
     return (
-        <div className='h-screen ' >
+        <div className='min-h-screen ' >
            <LoginForm />
         </div>
     );

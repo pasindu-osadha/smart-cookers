@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneProduct } from '../../services/ProductService';
+import { ProductProps } from '../../types/Product.types';
 
-type ProductinfoProps = {
+export type ProductinfoProps = {
 
-    id: string,
+    id: number,
     name: string,
     description: string,
     url: string,
     price: number,
-    qty: number
+    qty: number,
+    outlet: string
 }
 
 export const ProductInfoCard = () => {
@@ -36,7 +38,7 @@ export const ProductInfoCard = () => {
     return (
         <div className='h-full'>
             <div className="w-full justify-center flex m-4 ">
-                <div className="  w-1/2 bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="  w-1/2 bg-white shadow-lg rounded-lg overflow-hidden mb-44">
 
                     <div className=" p-4">
                         <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.name} </h1>
@@ -61,7 +63,7 @@ export const ProductInfoCard = () => {
                         </div> */}
                         <div className="flex item-center justify-between mt-3">
                             <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.price} </h1>
-                            <button className="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded">Pay</button>
+                            <button className="px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded">Proced order</button>
                         </div>
                     </div>
                 </div>

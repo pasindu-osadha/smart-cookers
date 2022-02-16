@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserRole } from '../../constants/global';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export const Navbar = () => {
@@ -12,7 +13,9 @@ export const Navbar = () => {
         // dispatch({ type: 'DeleteUser' });
 
         window.alert('Sucessfully logout ');
+        navigate('/');
         window.location.reload();
+
     };
 
     console.log(user.ID);
@@ -30,19 +33,38 @@ export const Navbar = () => {
         }
     };
 
-    const renderStaff = () => {
+    const renderInventory = () => {
+        if (user) {
+            if (user.Role == UserRole.InventoryStaff) {
 
-        if (user.Role == 'STAFF') {
-
-            return (
-                <li className='hover:cursor-pointer'>
-                    <a onClick={() => navigate('/product-page')} className="md:p-4 py-2 block hover:text-white">
-                        Product
-                    </a>
-                </li>
-            );
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/product-page')} className="md:p-4 py-2 block hover:text-white">
+                            Product
+                        </a>
+                    </li>
+                );
+            }
         }
+        else {
+            return <span></span>;
+        }
+    };
 
+
+    const renderSales = () => {
+        if (user) {
+            if (user.Role == UserRole.SalesStaff) {
+
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/sales-page')} className="md:p-4 py-2 block hover:text-white">
+                            Sales
+                        </a>
+                    </li>
+                );
+            }
+        }
         else {
             return <span></span>;
         }
@@ -77,14 +99,15 @@ export const Navbar = () => {
                             </a>
                         </li> */}
 
-                        {renderStaff()}
+                        {renderInventory()}
+                        {renderSales()}
                         {renderProfile()}
 
-                        <li className='hover:cursor-pointer'>
+                        {/* <li className='hover:cursor-pointer'>
                             <a onClick={() => navigate('/aboutUs')} className="md:p-4 py-2 block hover:text-white">
                                 About Us
                             </a>
-                        </li>
+                        </li> */}
                         <li className='hover:cursor-pointer '>
                             {!user && (
                                 <a onClick={() => navigate('/login')} className="md:p-4 py-2 block hover:text-white text-lime-100 bold">

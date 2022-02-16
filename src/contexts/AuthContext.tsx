@@ -1,17 +1,18 @@
-import React, {  createContext, useContext, useReducer, useState, Dispatch } from 'react';
+import React, { createContext, useContext, useReducer, useState, Dispatch } from 'react';
 import jwt_decode from 'jwt-decode';
-// import Cookie from 'js-cookie';
+
 
 
 type userToken = {
   ID: string,
-  Role : string
+  Role: string,
+  Name: string
 }
 
 
-const userInitialState : userToken = { ID:'' , Role:''};
+const userInitialState: userToken = { ID: '', Role: '', Name: '' };
 
-export const AuthContext= createContext<{
+export const AuthContext = createContext<{
   user: userToken;
   dispatch: Dispatch<any>;
 }>({
@@ -24,16 +25,16 @@ export const useAuthContext = () => {
 }
 
 interface AuthContextProviderProps {
-  children:React.ReactNode
+  children: React.ReactNode
 }
 
 
 
-const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
+const AuthContextProvider = ({ children, }: AuthContextProviderProps) => {
 
   //const [ auth, setAuth] = useState();
-  
-  const userReducer = (state : any, action : any) => {
+
+  const userReducer = (state: any, action: any) => {
 
     switch (action.type) {
       case 'LoadUser':
@@ -42,7 +43,7 @@ const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
         console.log(cookie);
         let token = jwt_decode<userToken>(cookie || '') || null;
         console.log(token)
-        
+
         console.log(token.ID)
         console.log(token.Role)
         return {
@@ -61,9 +62,9 @@ const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
     console.log(token);
     if (token) {
       let user = jwt_decode<userToken>(token || '') || null;
-      return { 
-          ID: user.ID,
-          Role: user.Role,  
+      return {
+        ID: user.ID,
+        Role: user.Role,
       }
     } else
       return '';
@@ -71,12 +72,12 @@ const AuthContextProvider = ({children,}:AuthContextProviderProps) => {
   });
 
 
-  return ( 
-    <AuthContext.Provider value ={ {user, dispatch}} >
-    {children}
-  </AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, dispatch }} >
+      {children}
+    </AuthContext.Provider>
 
-   );
+  );
 }
- 
+
 export default AuthContextProvider;

@@ -42,3 +42,7 @@ export const addProduct = async (data: any) => {
 export const deleteProduct=async (id:number) => {
     await axios.delete(api+'product/'+id);
 }
+
+export const getOutletProducts = ( outletName : string) => {
+    return axios.get(api + 'productInOutlet');
+}
