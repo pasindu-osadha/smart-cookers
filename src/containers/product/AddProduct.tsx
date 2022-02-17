@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { storage } from '../../firebase';
 import { addProduct } from '../../services/ProductService';
+import { ProductCreateDto } from '../../types/Product.types';
 
 var fileType = new File([''], '', {
   type: 'image'
@@ -23,13 +24,22 @@ export const AddProduct = () => {
 
   const handleSubmit = (e: any, status: any) => {
     e.preventDefault();
-    var data = {
-      'name': name,
-      'description': description,
-      'price': price,
-      'qty': qty,
-      'url': ""
-    };
+    // var data = {
+    //   'name': name,
+    //   'description': description,
+    //   'price': price,
+    //   'qty': qty,
+    //   'url': ""
+    // };
+    var data: ProductCreateDto = {
+      product_Name: name,
+      product_Description: description,
+      product_UnitPrice: price,
+      product_Quantity: qty,
+      product_Picture_Url: url
+    }
+
+
 
 
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -48,7 +58,7 @@ export const AddProduct = () => {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            data.url = url;
+            data.product_Picture_Url = url;
             console.log(data);
             addProduct(data);
             navigate('/product-page');

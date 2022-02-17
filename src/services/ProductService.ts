@@ -1,25 +1,34 @@
 import axios from 'axios';
+import { Guid } from 'guid-typescript';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Base_URL } from '../constants/global';
 
 
 
-const api = 'https://61f91a50783c1d0017c44947.mockapi.io/';
+//const api = 'https://61f91a50783c1d0017c44947.mockapi.io/product';
 
-export const getAllProducts = () => {
-    return axios.get(api + 'product');
+export const getAllProducts = async () => {
+
+    var result = await axios.get(Base_URL + '/api/Product/AllProduct');
+    //  var result = await axios.get(api);
+    console.log(result);
+    console.log(result.data);
+    return result;
 };
 
-export const getOneProduct =async (id?: string) => {
-    console.log('service layer ');
-    return await axios.get(api + 'product/' + id);
+export const getOneProduct = async (id?: string) => {
+    var result = await axios.get(Base_URL + '/api/Product/GetProduct/' + id);
+    console.log(result);
+    console.log(result.data);
+    return result;
 }
 
 
 export const addProduct = async (data: any) => {
     await axios({
         method: 'post',
-        url: api + 'product',
+        url: Base_URL + '/api/Product/AddProduct',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -39,10 +48,12 @@ export const addProduct = async (data: any) => {
         });
 };
 
-export const deleteProduct=async (id:number) => {
-    await axios.delete(api+'product/'+id);
+export const deleteProduct = async (id: Guid) => {
+    await axios.delete(Base_URL + 'product/' + id);
 }
 
-export const getOutletProducts = ( outletName : string) => {
-    return axios.get(api + 'productInOutlet');
+export const getOutletProducts = (outletName: string) => {
+    var result = axios.get(Base_URL + '/api/Product/AllProduct');
+    console.log(result);
+    return result;
 }

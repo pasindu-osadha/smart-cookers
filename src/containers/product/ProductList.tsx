@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ProductCard } from '../../components/product/ProductCard';
-import { ProductinfoProps } from '../../components/product/ProductInfoCard';
 import { getAllProducts, getOutletProducts } from '../../services/ProductService';
+import { ProductProps } from '../../types/Product.types';
 
 
 export const ProductList = () => {
 
-  const [productData, setProductData] = useState<ProductinfoProps[]>([]);
+  const [productData, setProductData] = useState([]);
 
   const [outlet, setOutlet] = useState('Select an outlet');
 
@@ -32,7 +32,7 @@ export const ProductList = () => {
           <div className="flex ml-6 items-center ">
             <span className="mr-3">Outlet</span>
             <div className="relative">
-              <select onChange={(e) => {
+              <select title='selectstore' onChange={(e) => {
                 {
                   setOutlet(e.target.value);
                   console.log('e.target.value');
@@ -60,7 +60,8 @@ export const ProductList = () => {
       <div className='grid grid-cols-4 gap-36 m-10 '>
         {productData.map(function (data, index) {
 
-          if (data.outlet === outlet) {
+         // if (data.outlet === outlet)
+         if(1) {
 
             return <ProductCard key={index} productData={data} />
           }

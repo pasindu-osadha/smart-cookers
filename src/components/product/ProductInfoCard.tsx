@@ -1,25 +1,15 @@
+import { Guid } from 'guid-typescript';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneProduct } from '../../services/ProductService';
-import { ProductProps } from '../../types/Product.types';
-
-export type ProductinfoProps = {
-
-    id: number,
-    name: string,
-    description: string,
-    url: string,
-    price: number,
-    qty: number,
-    outlet: string
-}
+import { ProductProps, ProductResponse } from '../../types/Product.types';
 
 export const ProductInfoCard = () => {
 
     const { id } = useParams();
     console.log(id);
 
-    const [productInfo, setProductInfo] = useState<ProductinfoProps | undefined>();
+    const [productInfo, setProductInfo] = useState<ProductResponse | undefined>();
 
     useEffect(() => {
 
@@ -41,28 +31,11 @@ export const ProductInfoCard = () => {
                 <div className="  w-1/2 bg-white shadow-lg rounded-lg overflow-hidden mb-44">
 
                     <div className=" p-4">
-                        <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.name} </h1>
-                        <img className="rounded-t-lg" src={productInfo?.url} alt="" />
-                        <p className="mt-2 text-gray-600 text-lg">{productInfo?.description}</p>
-                        {/* <div className="flex item-center mt-2">
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-500" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-500" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                        </div> */}
+                        <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.product_Name} </h1>
+                        <img className="rounded-t-lg" src={productInfo?.product_Picture_Url} alt="" />
+                        <p className="mt-2 text-gray-600 text-lg">{productInfo?.product_Description}</p>
                         <div className="flex item-center justify-between mt-3">
-                            <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.price} </h1>
+                            <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.product_UnitPrice} </h1>
                             <button className="px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded">Proced order</button>
                         </div>
                     </div>

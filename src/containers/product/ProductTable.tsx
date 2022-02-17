@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ProductTableRow } from '../../components/product/ProductTableRow';
 import { getAllProducts } from '../../services/ProductService';
+import { ProductProps } from '../../types/Product.types';
 
 export const ProductTable = () => {
     const [productsData, setProductData] = useState([]);
 
+
     useEffect(() => {
-        getAllProducts().then((res) => setProductData(res.data))
+        getAllProducts().then((res) => { setProductData(res.data); });
     }, []);
 
 
@@ -33,13 +35,15 @@ export const ProductTable = () => {
                         </thead>
 
                         <tbody>
-                            {productsData.map(function (data, name) {
-                                return <ProductTableRow key={name} productData={data} />;
+                            {productsData.map(function (data, id) {
+                                console.log(data)
+                               // console.log(data.product_Description)
+                                return <ProductTableRow key={id} productData={data} />;
                             })}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        );
+    );
 };
