@@ -32,7 +32,7 @@ export const ProductInfoCard = () => {
 
                     <div className=" p-4">
                         <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.product_Name} </h1>
-                        <img className="rounded-t-lg" src={productInfo?.product_Picture_Url} alt="" />
+                        <img className="rounded-t-lg max-h-96" src={productInfo?.product_Picture_Url} alt="" />
                         <p className="mt-2 text-gray-600 text-lg">{productInfo?.product_Description}</p>
                         <div className="flex item-center justify-between mt-3">
                             <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.product_UnitPrice} </h1>
