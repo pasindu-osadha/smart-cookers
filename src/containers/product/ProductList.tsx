@@ -21,7 +21,7 @@ export const ProductList = () => {
 
 
   useEffect(() => {
-    getAllProducts().then((res) => setProductData(res.data));
+    getOutletProducts('COLOMBO').then((res) => setProductData(res.data));
   }, []);
   return (
     <>
@@ -60,8 +60,8 @@ export const ProductList = () => {
       <div className='grid grid-cols-4 gap-36 m-10 '>
         {productData.map(function (data, index) {
 
-         // if (data.outlet === outlet)
-         if(1) {
+          // if (data.outlet === outlet)
+          if (1) {
 
             return <ProductCard key={index} productData={data} />
           }

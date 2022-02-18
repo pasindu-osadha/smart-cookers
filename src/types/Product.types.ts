@@ -15,7 +15,9 @@ import { Guid } from "guid-typescript";
 
 export type ProductProps = {
     productData: {
-        id: Guid,
+        productInOutletId :Guid,
+        productId: Guid,
+        outletId: Guid,
         product_Name: string,
         product_Description: string,
         product_UnitPrice: number,
@@ -26,7 +28,9 @@ export type ProductProps = {
 };
 
 export type ProductResponse = {
-    id: Guid,
+    productInOutletId :Guid,
+    productId: Guid,
+    outletId: Guid,
     product_Name: string,
     product_Description: string,
     product_UnitPrice: number,

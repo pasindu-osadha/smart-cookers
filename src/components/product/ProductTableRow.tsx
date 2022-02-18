@@ -6,7 +6,7 @@ import { ProductProps } from '../../types/Product.types';
 export const ProductTableRow = (props: ProductProps) => {
 
     const handleDelete = () => {
-        deleteProduct(props.productData.id);
+        deleteProduct(props.productData.productId);
         window.location.reload();
     }
     return (

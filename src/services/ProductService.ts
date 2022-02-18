@@ -18,7 +18,7 @@ export const getAllProducts = async () => {
 };
 
 export const getOneProduct = async (id?: string) => {
-    var result = await axios.get(Base_URL + '/api/Product/GetProduct/' + id);
+    var result = await axios.get(Base_URL + '/api/Product/GetProductInOutletItem/' + id);
     console.log(result);
     console.log(result.data);
     return result;
@@ -53,7 +53,8 @@ export const deleteProduct = async (id: Guid) => {
 }
 
 export const getOutletProducts = (outletName: string) => {
-    var result = axios.get(Base_URL + '/api/Product/AllProduct');
+   
+    var result = axios.get(Base_URL + '/api/Product/GetProductInOutlet/'+outletName);
     console.log(result);
     return result;
 }
