@@ -1,11 +1,31 @@
-
-
+import { useContext, useEffect, useState } from "react";
+import {AuthContext} from "../../contexts/AuthContext";
+import { getUserDetails } from "../../services/UserServices";
+import { UserReadDto } from "../../types/User.types";
 
 export const ProfilePage = () => {
+  
+  var a : UserReadDto= {
+    id: '',
+    first_Name:'',
+    last_Name:'',
+    contactNo:'',
+    nic:'',
+    profile_Pic_Url:'',
+    address:['','']
+  }
+  
+  const { user } = useContext(AuthContext);
+  const [userProfileData, setuserProfileData] = useState<UserReadDto>(a)
 
-
-
-
+  
+  useEffect(() => {
+    getUserDetails(user.ID).then((res)=>setuserProfileData(res.data));
+  },[])
+  
+  
+  
+  
   return (
 
     <div className='min-h-screen mx-20'>
@@ -29,7 +49,7 @@ export const ProfilePage = () => {
                         First name
                       </label>
                       <input
-                        defaultValue={''}
+                        defaultValue= {userProfileData.first_Name}
                         type="text"
                         name="first-name"
                         id="first-name"
@@ -43,6 +63,7 @@ export const ProfilePage = () => {
                         Last name
                       </label>
                       <input
+                      defaultValue= {userProfileData.last_Name}
                         type="text"
                         name="last-name"
                         id="last-name"
@@ -69,6 +90,7 @@ export const ProfilePage = () => {
                         Contact No
                       </label>
                       <input
+                      defaultValue= {userProfileData.contactNo}
                         type="text"
                         name="Contact No"
                         id="Contact No"
@@ -82,6 +104,7 @@ export const ProfilePage = () => {
                         NIC
                       </label>
                       <input
+                      defaultValue= {userProfileData.nic}
                         title="NICNo"
                         type="text"
                         name="NIC"
@@ -100,6 +123,7 @@ export const ProfilePage = () => {
                         Street address 01
                       </label>
                       <input
+                      defaultValue= {userProfileData.address[0]}
                         type="text"
                         name="street-address"
                         id="street-address"
@@ -115,6 +139,7 @@ export const ProfilePage = () => {
                         Street address 02
                       </label>
                       <input
+                      defaultValue= {userProfileData.address[1]}
                         type="text"
                         name="street-address"
                         id="street-address"

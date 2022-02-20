@@ -28,6 +28,7 @@ export const ProductInfoCard = () => {
     const [totalAmount, settotalAmount] = useState(0);
 
 
+
     useEffect(() => {
         getOneProduct(id)
             .then((res: any) => {
