@@ -1,15 +1,21 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContextProvider from "../../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 import { ProductProps } from "../../types/Product.types";
 import { ProductInfoCard } from "./ProductInfoCard";
 
 
 export const ProductCard = (props: ProductProps) => {
 
+  
+
+
 
 
   return (
     <div>
-      {
+    
         <div className="flex justify-center ">
           <div className="rounded-lg shadow-lg bg-lightGreen max-w-sm">
             <Link to="#">
@@ -24,7 +30,7 @@ export const ProductCard = (props: ProductProps) => {
               </Link> </div>
           </div>
         </div>
-      }
+     
     </div>
   );
 };

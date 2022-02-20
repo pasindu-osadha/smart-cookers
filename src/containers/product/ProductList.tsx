@@ -38,7 +38,7 @@ export const ProductList = () => {
                   console.log(e.target.value);
                   handleOutlet(e.target.value)
                 }
-              }} defaultValue='Select' className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-sky-700 text-base pl-3 pr-10">
+              }} defaultValue='COLOMBO' className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-sky-700 text-base pl-3 pr-10">
                 <option value={'Select an outlet'} > Select an outlet</option>
                 <option value={'COLOMBO'}>COLOMBO</option>
                 <option value={'KALUTARA'}> KALUTARA</option>
