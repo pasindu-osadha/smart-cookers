@@ -10,9 +10,9 @@ export const ProductList = () => {
 
   const [outlet, setOutlet] = useState('Select an outlet');
 
-  const handleOutlet = () => {
+  const handleOutlet = (p: string) => {
     console.log('handle outlet');
-    getOutletProducts(outlet).then((res) => {
+    getOutletProducts(p).then((res) => {
       setProductData(res.data)
       console.log(res.data);
 
@@ -34,9 +34,9 @@ export const ProductList = () => {
             <div className="relative">
               <select title='selectstore' onChange={(e) => {
                 {
-                  setOutlet(e.target.value);
-                  console.log('e.target.value');
-                  handleOutlet()
+                  // setOutlet(e.target.value);
+                  console.log(e.target.value);
+                  handleOutlet(e.target.value)
                 }
               }} defaultValue='Select' className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-sky-700 text-base pl-3 pr-10">
                 <option value={'Select an outlet'} > Select an outlet</option>
