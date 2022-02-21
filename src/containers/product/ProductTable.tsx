@@ -15,7 +15,7 @@ export const ProductTable = () => {
 
     return (
 
-        <div className='h-screen'>
+        <div className='h-full'>
             <div className="text-gray-900 bg-gray-200">
                 <div className="p-4 flex">
                     <h1 className="text-3xl">
