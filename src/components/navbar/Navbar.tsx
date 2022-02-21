@@ -72,13 +72,15 @@ export const Navbar = () => {
 
     const renderTransactionHistory = () => {
         if (user) {
-            return (
-                <li className='hover:cursor-pointer'>
-                    <a onClick={() => navigate('/profile-TransctionHistory')} className="md:p-4 py-2 block hover:text-white">
-                        TransactionHistory
-                    </a>
-                </li>
-            );
+            if (user.Role == UserRole.SalesStaff || user.Role == UserRole.Customer) {
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/profile-TransctionHistory')} className="md:p-4 py-2 block hover:text-white">
+                            TransactionHistory
+                        </a>
+                    </li>
+                );
+            }
         } else {
             return <span></span>;
         }

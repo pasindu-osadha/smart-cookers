@@ -29,7 +29,7 @@ export const UserTransaction = () => {
                     <table className="w-full text-md bg-white shadow-md rounded mb-4">
                         <thead>
                             <tr className="border-b">
-                                <th className="text-left p-3 px-5">Order Id</th>
+
                                 <th className="text-left p-3 px-5">Order Date</th>
                                 <th className="text-left p-3 px-5">Product Name</th>
                                 <th className="text-left p-3 px-5">Product Qty</th>
@@ -41,10 +41,10 @@ export const UserTransaction = () => {
 
                         <tbody>
                             {transaction.map((item, index) => {
-                               
+
                                 return (
                                     <tr className="border-b hover:bg-[#badfe7] bg-gray-100">
-                                        <td className="p-3 px-5">{item.orderId}</td>
+
                                         <td className="p-3 px-5">{item.order_Date}</td>
                                         <td className="p-3 px-5">{item.productName}</td>
                                         <td className="p-3 px-5">{item.productQty}</td>

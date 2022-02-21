@@ -94,7 +94,7 @@ export const ProductInfoCard = () => {
                         </div>
                         <div>
                             <button className='px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded' onClick={() => handleDecrement()} >-</button>
-                            {productCount}
+                              <label className='mx-6'>{productCount}</label> 
                             <button className='px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded' onClick={() => handleIncreament()} >+</button>
                             &nbsp;&nbsp;&nbsp;
                             {user &&
