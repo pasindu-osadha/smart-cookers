@@ -1,5 +1,9 @@
 import axios from "axios";
+import { Guid } from "guid-typescript";
+import { useNavigate } from "react-router-dom";
 import { Base_URL } from "../constants/global";
+
+
 
 export const addOrder = async (data: any) => {
     await axios({
@@ -16,8 +20,6 @@ export const addOrder = async (data: any) => {
             alert("Order complete sucessfully ");
 
             return response;
-
-
         })
         .catch(function (response) {
             //handle error
@@ -25,3 +27,8 @@ export const addOrder = async (data: any) => {
             alert("Order is not completed, try again");
         });
 };
+
+export const getUserTransactionHistory = async (id: string) => {
+  var result =   await axios.get(Base_URL + `/api/Order/getTrasnsactionHistory/${id}`);
+  return result.data;
+}

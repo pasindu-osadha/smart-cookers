@@ -54,3 +54,14 @@ export type OrderCreateDto = {
     product_Order_Qty: number,
     totalAmount: number
 }
+
+export type TransactionHistoryDto = {
+    orderId: Guid,
+    order_Date: string,
+    productName: string,
+    productQty: number,
+    order_Status: string,
+    totalAmount: number,
+    userId: Guid,
+    outletName: string,
+}[]

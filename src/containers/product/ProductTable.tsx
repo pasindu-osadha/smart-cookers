@@ -30,7 +30,7 @@ export const ProductTable = () => {
                                 <th className="text-left p-3 px-5">Description</th>
                                 <th className="text-left p-3 px-5">Price</th>
                                 <th className="text-left p-3 px-5">Avilable Qty</th>
-                                <th></th>
+                                {/* <th></th> */}
                             </tr>
                         </thead>
 

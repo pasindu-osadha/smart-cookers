@@ -63,7 +63,7 @@ export const ProductInfoCard = () => {
     }
 
     const handleOrderProcess = () => {
-        debugger
+       // debugger
         var data: OrderCreateDto = {
             productInOutletId: productInfo?.productInOutletId,
             outletId: productInfo?.outletId,
@@ -73,7 +73,7 @@ export const ProductInfoCard = () => {
             totalAmount: totalAmount
         }
 
-        addOrder(data);
+        addOrder(data).then(()=>{naviagte('/')});
     }
 
 

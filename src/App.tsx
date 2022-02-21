@@ -14,6 +14,7 @@ import { ProductInfoCard } from './components/product/ProductInfoCard';
 import AuthContextProvider from './contexts/AuthContext';
 import { ProfilePage } from './pages/profile/ProfilePage';
 import { Sales } from './pages/Sales/Sales';
+import { UserTransaction } from './components/transaction/UserTransaction';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path='/ProductInfoCard/:id' element={<ProductInfoCard />} />
             <Route path='/profile-page' element={<ProfilePage />} />
             <Route path='/sales-page' element={<Sales />} />
+            <Route path='/profile-TransctionHistory' element={<UserTransaction />} />
           </Routes>
 
           <Footer />
