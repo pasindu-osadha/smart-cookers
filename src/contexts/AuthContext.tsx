@@ -40,12 +40,9 @@ const AuthContextProvider = ({ children, }: AuthContextProviderProps) => {
       case 'LoadUser':
         const cookie = localStorage.getItem('userToken');
 
-        console.log(cookie);
+       
         let token = jwt_decode<userToken>(cookie || '') || null;
-        console.log(token)
-
-        console.log(token.ID)
-        console.log(token.Role)
+      
         return {
           ID: token.ID,
           Role: token.Role,

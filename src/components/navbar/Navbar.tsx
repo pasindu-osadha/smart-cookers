@@ -18,7 +18,7 @@ export const Navbar = () => {
 
     };
 
-    console.log(user.ID);
+
     const renderProfile = () => {
         if (user) {
             return (
@@ -87,8 +87,7 @@ export const Navbar = () => {
     };
 
     useEffect(() => {
-        console.log(user.ID);
-        console.log(user.Role);
+
     });
 
 

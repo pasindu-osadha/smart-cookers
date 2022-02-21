@@ -59,7 +59,6 @@ export const AddProduct = () => {
           .getDownloadURL()
           .then((url) => {
             data.product_Picture_Url = url;
-            console.log(data);
             addProduct(data);
             navigate('/product-page');
           });

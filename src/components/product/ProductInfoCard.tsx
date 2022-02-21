@@ -33,12 +33,11 @@ export const ProductInfoCard = () => {
         getOneProduct(id)
             .then((res: any) => {
                 setProductInfo(res.data);
-                console.log(res.data);
-                console.log(productInfo);
+         
 
             })
             .catch(err => {
-                console.log(err);
+               
             });
 
     }, []);

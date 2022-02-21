@@ -17,11 +17,10 @@ export const submitLoginData = async (data: any) => {
     })
         .then(function (response) {
 
-            console.log(response)
+            
             localStorage.setItem('userToken', JSON.stringify(response.data.token));
 
-            console.log(response.data.token);
-            return response;
+               return response;
         })
         .catch(function (response) {
             //handle error

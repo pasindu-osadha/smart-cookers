@@ -11,10 +11,10 @@ export const ProductList = () => {
   const [outlet, setOutlet] = useState('Select an outlet');
 
   const handleOutlet = (p: string) => {
-    console.log('handle outlet');
+   
     getOutletProducts(p).then((res) => {
       setProductData(res.data)
-      console.log(res.data);
+     
 
     })
   }

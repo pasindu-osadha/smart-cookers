@@ -16,14 +16,14 @@ export const addOrder = async (data: any) => {
     })
         .then(function (response) {
             //handle success
-            console.log(response);
+         //   console.log(response);
             alert("Order complete sucessfully ");
 
             return response;
         })
         .catch(function (response) {
             //handle error
-            console.log(response);
+           // console.log(response);
             alert("Order is not completed, try again");
         });
 };

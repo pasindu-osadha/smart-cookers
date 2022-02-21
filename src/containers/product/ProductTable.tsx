@@ -36,9 +36,8 @@ export const ProductTable = () => {
 
                         <tbody>
                             {productsData.map(function (data, id) {
-                                console.log(data)
-                               // console.log(data.product_Description)
-                                return <ProductTableRow key={id} productData={data} />;
+                             
+                              return <ProductTableRow key={id} productData={data} />;
                             })}
                         </tbody>
                     </table>

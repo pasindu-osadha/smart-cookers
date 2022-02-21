@@ -12,15 +12,15 @@ export const getAllProducts = async () => {
 
     var result = await axios.get(Base_URL + '/api/Product/AllProduct');
     //  var result = await axios.get(api);
-    console.log(result);
-    console.log(result.data);
+   // console.log(result);
+   // console.log(result.data);
     return result;
 };
 
 export const getOneProduct = async (id?: string) => {
     var result = await axios.get(Base_URL + '/api/Product/GetProductInOutletItem/' + id);
-    console.log(result);
-    console.log(result.data);
+   // console.log(result);
+   // console.log(result.data);
     return result;
 }
 
@@ -36,7 +36,7 @@ export const addProduct = async (data: any) => {
     })
         .then(function (response) {
             //handle success
-            console.log(response);
+           // console.log(response);
 
             return response;
 
@@ -44,7 +44,7 @@ export const addProduct = async (data: any) => {
         })
         .catch(function (response) {
             //handle error
-            console.log(response);
+           // console.log(response);
         });
 };
 
@@ -55,6 +55,6 @@ export const deleteProduct = async (id: Guid) => {
 export const getOutletProducts = (outletName: string) => {
    
     var result = axios.get(Base_URL + '/api/Product/GetProductInOutlet/'+outletName);
-    console.log(result);
+    //console.log(result);
     return result;
 }
