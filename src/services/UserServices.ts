@@ -2,8 +2,11 @@ import axios from "axios";
 import { Base_URL } from "../constants/global";
 
 export const getUserDetails = async (id?: string) => {
-    var result = await axios.get(Base_URL + '/GetuserDetailsById/' + id);
-    //console.log(result);
-   // console.log(result.data);
+    const token = localStorage.getItem('userToken');
+    var result = await axios.get(Base_URL + '/GetuserDetailsById/' + id, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     return result;
 }

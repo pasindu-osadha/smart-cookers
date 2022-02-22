@@ -5,38 +5,43 @@ import { Link } from 'react-router-dom';
 import { Base_URL } from '../constants/global';
 
 
-
-//const api = 'https://61f91a50783c1d0017c44947.mockapi.io/product';
-
 export const getAllProducts = async () => {
-
-    var result = await axios.get(Base_URL + '/api/Product/AllProduct');
-    //  var result = await axios.get(api);
-   // console.log(result);
-   // console.log(result.data);
+    const token = localStorage.getItem('userToken');
+    var result = await axios.get(Base_URL + '/api/Product/AllProduct',
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
     return result;
 };
 
 export const getOneProduct = async (id?: string) => {
-    var result = await axios.get(Base_URL + '/api/Product/GetProductInOutletItem/' + id);
-   // console.log(result);
-   // console.log(result.data);
+    const token = localStorage.getItem('userToken');
+    var result = await axios.get(Base_URL + '/api/Product/GetProductInOutletItem/' + id,
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
     return result;
 }
 
 
 export const addProduct = async (data: any) => {
+    const token = localStorage.getItem('userToken');
     await axios({
         method: 'post',
         url: Base_URL + '/api/Product/AddProduct',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         data: data
     })
         .then(function (response) {
             //handle success
-           // console.log(response);
+            // console.log(response);
 
             return response;
 
@@ -44,17 +49,27 @@ export const addProduct = async (data: any) => {
         })
         .catch(function (response) {
             //handle error
-           // console.log(response);
+            // console.log(response);
         });
 };
 
 export const deleteProduct = async (id: Guid) => {
-    await axios.delete(Base_URL + 'product/' + id);
+    const token = localStorage.getItem('userToken');
+    await axios.delete(Base_URL + 'product/' + id,
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 }
 
 export const getOutletProducts = (outletName: string) => {
-   
-    var result = axios.get(Base_URL + '/api/Product/GetProductInOutlet/'+outletName);
-    //console.log(result);
+    const token = localStorage.getItem('userToken');
+    var result = axios.get(Base_URL + '/api/Product/GetProductInOutlet/' + outletName,
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
     return result;
 }
