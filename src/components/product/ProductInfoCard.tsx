@@ -1,39 +1,80 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Guid } from 'guid-typescript';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { addOrder } from '../../services/OrderService';
 import { getOneProduct } from '../../services/ProductService';
-import { ProductProps } from '../../types/Product.types';
-
-export type ProductinfoProps = {
-
-    id: number,
-    name: string,
-    description: string,
-    url: string,
-    price: number,
-    qty: number,
-    outlet: string
-}
+import { OrderCreateDto, ProductProps, ProductResponse } from '../../types/Product.types';
 
 export const ProductInfoCard = () => {
 
+    const { user } = useContext(AuthContext);
     const { id } = useParams();
-    console.log(id);
+    const naviagte = useNavigate();
 
-    const [productInfo, setProductInfo] = useState<ProductinfoProps | undefined>();
+    var a: ProductResponse = {
+        productInOutletId: Guid.create(),
+        productId: Guid.create(),
+        outletId: Guid.create(),
+        product_Name: '',
+        product_Description: '',
+        product_UnitPrice: 1,
+        avalable_Quantity: 0,
+        product_Picture_Url: ''
+    };
+
+    const [productInfo, setProductInfo] = useState<ProductResponse>(a);
+    const [productCount, setProductCount] = useState(0);
+    const [totalAmount, settotalAmount] = useState(0);
+
+
 
     useEffect(() => {
-
         getOneProduct(id)
             .then((res: any) => {
                 setProductInfo(res.data);
-                console.log(res.data);
-                console.log(productInfo);
+         
+
             })
             .catch(err => {
-                console.log(err);
+               
             });
 
     }, []);
+
+    useEffect(() => {
+        settotalAmount(productCount * productInfo?.product_UnitPrice);
+    }, [productCount])
+
+
+    const handleDecrement = () => {
+        if (productCount > 0) {
+            setProductCount(productCount - 1);
+
+        }
+
+    }
+
+    const handleIncreament = () => {
+        if (productCount < productInfo.avalable_Quantity) {
+            setProductCount(productCount + 1)
+        }
+    }
+
+    const handleOrderProcess = () => {
+       // debugger
+        var data: OrderCreateDto = {
+            productInOutletId: productInfo?.productInOutletId,
+            outletId: productInfo?.outletId,
+            productId: productInfo?.productId,
+            userId: user.ID,
+            product_Order_Qty: productCount,
+            totalAmount: totalAmount
+        }
+
+        addOrder(data).then(()=>{naviagte('/')});
+    }
+
 
     return (
         <div className='h-full'>
@@ -41,33 +82,35 @@ export const ProductInfoCard = () => {
                 <div className="  w-1/2 bg-white shadow-lg rounded-lg overflow-hidden mb-44">
 
                     <div className=" p-4">
-                        <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.name} </h1>
-                        <img className="rounded-t-lg" src={productInfo?.url} alt="" />
-                        <p className="mt-2 text-gray-600 text-lg">{productInfo?.description}</p>
-                        {/* <div className="flex item-center mt-2">
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-700" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-500" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                            <svg className="w-5 h-5 fill-current text-gray-500" viewBox="0 0 24 24">
-                                <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                            </svg>
-                        </div> */}
+                        <h1 className="text-gray-900 font-bold text-2xl">{productInfo?.product_Name} </h1>
+                        <img className="rounded-t-lg max-h-96" src={productInfo?.product_Picture_Url} alt="" />
+                        <p className="mt-2 text-gray-600 text-lg">{productInfo?.product_Description}</p>
                         <div className="flex item-center justify-between mt-3">
-                            <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.price} </h1>
-                            <button className="px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded">Proced order</button>
+                            <h1 className="text-gray-700 font-bold text-xl">Unit Price : Rs. {productInfo?.product_UnitPrice} </h1>
+                            <h1 className="text-gray-700 font-bold text-xl">Available  Qty : {productInfo?.avalable_Quantity} </h1>
+                            <h1 className="text-gray-700 font-bold text-xl">Total amount : {totalAmount} </h1>
+
                         </div>
+                        <div>
+                            <button className='px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded' onClick={() => handleDecrement()} >-</button>
+                              <label className='mx-6'>{productCount}</label> 
+                            <button className='px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded' onClick={() => handleIncreament()} >+</button>
+                            &nbsp;&nbsp;&nbsp;
+                            {user &&
+                                <button className="px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded" onClick={() => { handleOrderProcess() }}>Proced order</button>
+                            }
+
+                            {!user &&
+                                <button className="px-3 py-2 bg-navbarColor text-white text-xs font-bold uppercase rounded" onClick={() => naviagte('/login')} >Proced order</button>
+                            }
+
+
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-        </div>);
+        </div>
+    );
 };

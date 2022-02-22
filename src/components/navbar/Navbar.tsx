@@ -18,7 +18,7 @@ export const Navbar = () => {
 
     };
 
-    console.log(user.ID);
+
     const renderProfile = () => {
         if (user) {
             return (
@@ -70,9 +70,24 @@ export const Navbar = () => {
         }
     };
 
+    const renderTransactionHistory = () => {
+        if (user) {
+            if (user.Role == UserRole.SalesStaff || user.Role == UserRole.Customer) {
+                return (
+                    <li className='hover:cursor-pointer'>
+                        <a onClick={() => navigate('/profile-TransctionHistory')} className="md:p-4 py-2 block hover:text-white">
+                            TransactionHistory
+                        </a>
+                    </li>
+                );
+            }
+        } else {
+            return <span></span>;
+        }
+    };
+
     useEffect(() => {
-        console.log(user.ID);
-        console.log(user.Role);
+
     });
 
 
@@ -102,6 +117,7 @@ export const Navbar = () => {
                         {renderInventory()}
                         {renderSales()}
                         {renderProfile()}
+                        {renderTransactionHistory()}
 
                         {/* <li className='hover:cursor-pointer'>
                             <a onClick={() => navigate('/aboutUs')} className="md:p-4 py-2 block hover:text-white">

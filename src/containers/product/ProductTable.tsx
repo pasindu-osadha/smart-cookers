@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { ProductTableRow } from '../../components/product/ProductTableRow';
 import { getAllProducts } from '../../services/ProductService';
+import { ProductProps } from '../../types/Product.types';
 
 export const ProductTable = () => {
     const [productsData, setProductData] = useState([]);
 
+
     useEffect(() => {
-        getAllProducts().then((res) => setProductData(res.data))
+        getAllProducts().then((res) => { setProductData(res.data); });
     }, []);
 
 
 
     return (
 
-        <div className='h-screen'>
+        <div className='h-full'>
             <div className="text-gray-900 bg-gray-200">
                 <div className="p-4 flex">
                     <h1 className="text-3xl">
@@ -28,18 +30,19 @@ export const ProductTable = () => {
                                 <th className="text-left p-3 px-5">Description</th>
                                 <th className="text-left p-3 px-5">Price</th>
                                 <th className="text-left p-3 px-5">Avilable Qty</th>
-                                <th></th>
+                                {/* <th></th> */}
                             </tr>
                         </thead>
 
                         <tbody>
-                            {productsData.map(function (data, name) {
-                                return <ProductTableRow key={name} productData={data} />;
+                            {productsData.map(function (data, id) {
+                             
+                              return <ProductTableRow key={id} productData={data} />;
                             })}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        );
+    );
 };
